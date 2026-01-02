@@ -6,14 +6,23 @@ const noBtn = document.querySelector('.no-btn');
 const wrapperRect = wrapper.getBoundingClientRect();
 const noBtnRect = noBtn.getBoundingClientRect();
 
+let isPlaying = false;
+const audio = new Audio('Media/say-yes-loco-punch.mp3');
+
 function replaceImage() {
     var img = document.getElementById('image');
     img.src = 'Media/sonic-freaky.gif';
 }
 
 function playMusic() {
-    var audio = new Audio('Media/CarelessWhisperLowQuality.mp3');
-    audio.play();
+    if(!isPlaying){
+        audio.play();
+        isPlaying = true;
+
+        audio.onended = function() {
+            isPlaying = false;
+        };
+    }
 }
 
 yesBtn.addEventListener('click', () => {
